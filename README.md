@@ -1,5 +1,5 @@
-1blankspace-accountant
-======================
+1blankspace for Accountants
+===========================
 
 Example HTML5/js/jQuery based example interface for accountants to manage a client.
 
