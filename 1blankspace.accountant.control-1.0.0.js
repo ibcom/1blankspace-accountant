@@ -9,8 +9,8 @@ var gsLoadingSmallXHTML = '<img class="interfaceLoadingSmall" id="imgInterfaceLo
 
 var giReturnRows = 20;
 var gsEditorCSS = '';
-var gsViewportDefault = "Websites";
-var gsSetupViewportDefault = "Spaces";
+var gsViewportDefault = "Financials";
+var gsSetupViewportDefault = "Financials";
 
 var giObjectPerson = 32;
 var giObjectBusiness = 12;
@@ -86,13 +86,13 @@ function interfaceControlSetMasterViewport()
 	}	
 	else
 	{
-		interfaceSetupWebsiteMasterViewport({showHome: false});
+		interfaceSetupFinancialMasterViewport({showHome: false});
 	}	
 }
 
 function interfaceControlSetSetupMasterViewport()
 {
-	interfaceDeveloperSpaceMasterViewport();
+	interfaceSetupFinancialMasterViewport();
 }
 
 function interfaceControlOptions()
@@ -106,7 +106,7 @@ function interfaceControlOptions()
 	
 	if (gbRoleBase)
 	{	
-		aHTML[++h] = '<td id="tdInterfaceViewportMasterControlcolumn5" class="interfaceViewportMasterControlColumn">';
+		aHTML[++h] = '<td id="tdInterfaceViewportMasterControlcolumn1" class="interfaceViewportMasterControlColumn">';
 		aHTML[++h] = '<table id="tableInterfaceViewportMasterControlColumn5" class="interfaceViewportMasterControlColumn">';
 
 		aHTML[++h] = '<tr class="interfaceViewportMasterControl">' +
@@ -124,7 +124,7 @@ function interfaceControlOptions()
 		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlFinancialBankAccount" class="interfaceViewportMasterControl">' +
 					'<td id="tdInterfaceViewportMasterControlFinancialBankAccount" class="interfaceViewportMasterControl">' +
 					'<span id="spanInterfaceViewportMasterControlFinancialBankAccount" class="interfaceViewportMasterControl">' +
-					'Bank Accounts</span>' +
+					'Bank&nbsp;Accounts</span>' +
 					'</td>' +
 					'</tr>';
 					
@@ -163,6 +163,7 @@ function interfaceControlOptions()
 	
 	if (gbRoleBase)
 	{	
+		aHTML[++h] = '<td id="tdInterfaceViewportMasterControlcolumn2" class="interfaceViewportMasterControlColumn">';
 	
 		aHTML[++h] = '<table id="tableInterfaceViewportMasterControlColumn6" class="interfaceViewportMasterControlColumn">';
 			
@@ -178,10 +179,10 @@ function interfaceControlOptions()
 						'</td>' +
 						'</tr>';
 						
-		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlStructure" class="interfaceViewportMasterControl">' +
-						'<td id="tdInterfaceViewportMasterControlStructure" class="interfaceViewportMasterControl">' +
-						'<span id="spanInterfaceViewportMasterControlStructure" class="interfaceViewportMasterControl">' +
-						'Structures</span>' +
+		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlSpaces" class="interfaceViewportMasterControl">' +
+						'<td id="tdInterfaceViewportMasterControlSpaces" class="interfaceViewportMasterControl">' +
+						'<span id="spanInterfaceViewportMasterControlSpaces" class="interfaceViewportMasterControl">' +
+						'Clients</span>' +
 						'</td>' +
 						'</tr>';
 						
@@ -198,74 +199,52 @@ function interfaceControlOptions()
 
 function interfaceControlOptionsBind()
 {
-
-	$('#tdInterfaceViewportMasterControlSetupWebsite').click(function(event)
-	{
-		interfaceMasterOptionsSource();
-		interfaceSetupWebsiteMasterViewport();
-	});
-		
 	$('#tdInterfaceViewportMasterControlSetupUser').click(function(event)
 	{
 		interfaceMasterOptionsSource();
 		interfaceSetupUserMasterViewport();
 	});
 	
-	$('#tdInterfaceViewportMasterControlSetupNetworkGroup').click(function(event)
+	$('#tdInterfaceViewportMasterControlFinancial').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupNetworkGroupMasterViewport();
+		interfaceFinancialMasterViewport();
 	});
 	
-	$('#tdInterfaceViewportMasterControlSetupAutomation').click(function(event)
+	$('#tdInterfaceViewportMasterControlFinancialBankAccount').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupAutomationMasterViewport();
+		interfaceFinancialBankAccountMasterViewport();
 	});
 	
-	
-	$('#tdInterfaceViewportMasterControlSetupStructure').click(function(event)
+	$('#tdInterfaceViewportMasterControlFinancialInvoice').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupStructureMasterViewport();
+		interfaceFinancialInvoiceMasterViewport();
 	});
 	
-	$('#tdInterfaceViewportMasterControlSetupContactBusinessGroup').click(function(event)
+	$('#tdInterfaceViewportMasterControlFinancialExpense').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupMasterViewport(
-				{
-				setupName: "Contact Business Groups",
-				setupMethod: "/directory/ondemand/setup.asp?method=SETUP_CONTACT_BUSINESS_GROUP"
-				});
+		interfaceFinancialExpenseMasterViewport();
 	});
 	
-	$('#tdInterfaceViewportMasterControlSetupContactPersonGroup').click(function(event)
+	$('#tdInterfaceViewportMasterControlFinancialReceipt').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupMasterViewport(
-				{
-				setupName: "Contact Person Groups",
-				setupMethod: "/directory/ondemand/setup.asp?method=SETUP_CONTACT_PERSON_GROUP"
-				});
+		interfaceFinancialReceiptMasterViewport();
 	});
 	
-	$('#tdInterfaceViewportMasterControlSetupProject').click(function(event)
+	$('#tdInterfaceViewportMasterControlFinancialPayment').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupProjectMasterViewport();
+		interfaceFinancialPaymentMasterViewport();
 	});
-	
-	$('#tdInterfaceViewportMasterControlSetupProjectTaak').click(function(event)
+
+	$('#tdInterfaceViewportMasterControlReport').click(function(event)
 	{
 		interfaceMasterOptionsSource();
-		interfaceSetupProjectTaskMasterViewport();
-	});
-	
-	$('#tdInterfaceViewportMasterControlSupportIssue').click(function(event)
-	{
-		interfaceMasterOptionsSource();
-		interfaceSupportIssueMasterViewport();
+		interfaceReportMasterViewport();
 	});
 }
 function interfaceControlSetupOptions()
@@ -280,37 +259,30 @@ function interfaceControlSetupOptions()
 	
 	if (gbRoleSetup)
 	{	
-	
-		aHTML[++h] = '<td id="tdInterfaceViewportMasterSetupControlColumn1" class="interfaceViewportMasterControlColumn">';
-		aHTML[++h] = '<table id="tableInterfaceViewportMasterSetupControlColumn1" class="interfaceViewportMasterControlColumn">';
+		
+			aHTML[++h] = '<td id="tdInterfaceViewportMasterSetupControlColumn2" class="interfaceViewportMasterControlColumn">';
+		aHTML[++h] = '<table id="tableInterfaceViewportMasterSetupControlColumn2" class="interfaceViewportMasterControlColumn">';
 
-		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlDeveloperSpace" class="interfaceViewportMasterControl">' +
-					'<td id="tdInterfaceViewportMasterControlDeveloperSpace" class="interfaceViewportMasterControl">' +
-					'<span id="spanInterfaceViewportMasterControlDeveloperSpace" class="interfaceViewportMasterControl">' +
-					'Spaces</span>' +
+		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlSetupFinancial" class="interfaceViewportMasterControl">' +	
+					'<td id="tdInterfaceViewportMasterControlSetupFinancial" class="interfaceViewportMasterControl">' +
+					'<span id="spanInterfaceViewportMasterControlSetupFinancial" class="interfaceViewportMasterControl">' +
+					'Financials</span>' +
 					'</td></tr>';
-					
+
 		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlSetupUser" class="interfaceViewportMasterControl">' +	
 					'<td id="tdInterfaceViewportMasterControlSetupUser" class="interfaceViewportMasterControl">' +
 					'<span id="spanInterfaceViewportMasterControlSetupUser" class="interfaceViewportMasterControl">' +
-					'Register a space</span>' +
+					'Users</span>' +
 					'</td></tr>';
-		
-		aHTML[++h] = '</table>';
-		aHTML[++h] = '</td>';
-		
-		aHTML[++h] = '<td id="tdInterfaceViewportMasterSetupControlColumn2" class="interfaceViewportMasterControlColumn">';
-		aHTML[++h] = '<table id="tableInterfaceViewportMasterSetupControlColumn2" class="interfaceViewportMasterControlColumn">';
-
-		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlSetupContactBusinessGroup" class="interfaceViewportMasterControl">' +	
-					'<td id="tdInterfaceViewportMasterControlSetupContactBusinessGroup" class="interfaceViewportMasterControl">' +
-					'<span id="spanInterfaceViewportMasterControlSetupContactBusinessGroup" class="interfaceViewportMasterControl">' +
-					'Billing</span>' +
-					'</td></tr>';
+	
+		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlSetupUser" class="interfaceViewportMasterControl">' +	
+					'<td id="tdInterfaceViewportMasterControlSetupUser" class="interfaceViewportMasterControl">' +
+					'<span id="spanInterfaceViewportMasterControlSetupUser" class="interfaceViewportMasterControl">' +
+					'Register&nbsp;a&nbsp;client</span>' +
+					'</td></tr>';		
 					
 		aHTML[++h] = '</table>';
-		aHTML[++h] = '</td>';
-
+		aHTML[++h] = '</td>';	
 	}	
 	
 	aHTML[++h] = '</tr></table>'

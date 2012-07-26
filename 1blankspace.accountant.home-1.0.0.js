@@ -42,13 +42,13 @@ function interfaceHomeViewport()
 	aHTML[++h] = '<table id="tableInterfaceHomeViewport">';
 	
 	aHTML[++h] = '<tr>' +
-						'<td style="background-position: right center;" id="interfaceMasterViewportSetupLarge" class="interfaceMasterViewportImageLarge">' +
+						'<td style="background-position: right center;" id="interfaceMasterViewportFinancialLarge" class="interfaceMasterViewportImageLarge">' +
 						'&nbsp;' + 
 						'</td>' +
 						'</tr>';
 		
 	aHTML[++h] = '<tr id="trInterfaceViewportControl1" class="interfaceViewportControl">' +
-					'<td id="tdInterfaceViewportControlSetupWebsites" class="interfaceViewportControl interfaceViewportControlHome">Websites<br />&&nbsp;Webapps</td>' +
+					'<td id="tdInterfaceViewportControlFinancials" class="interfaceViewportControl interfaceViewportControlHome">Financials</td>' +
 					'</tr>';
 	
 	aHTML[++h] = '</table>';					
@@ -61,11 +61,11 @@ function interfaceHomeViewport()
 function interfaceMasterHomeViewportBind()
 {
 	
-	$('#tdInterfaceViewportControlSetupWebsites').click(function(event)
+	$('#tdInterfaceViewportControlFinancials').click(function(event)
 	{
 		$('#tdInterfaceMainHomeColumn1').html(gsLoadingXHTML);
 		gsHomeDefaultElementId = this.id;
-		interfaceHomeSetupWebsitesShow()
+		interfaceHomeFinancialsShow()
 	});
 	
 }	
@@ -88,7 +88,7 @@ function interfaceHome()
 	aHTML[++h] = '<table id="tableInterfaceMainHomeColumn2" class="interfaceMainHome">';
 	aHTML[++h] = '<tr id="trInterfaceMainHomeColumn2Row2" class="interfaceMainHome">' +						
 						'<td id="tdInterfaceMainHomeNotes" class="interfaceMainHome" style="font-size:0.75em;color:#404040;">' +
-						'This is a simple app for accountants for manage their clients.' +
+						'An app for accountants to manage their clients.' +
 						'</td>' +
 						'</tr>';
 						
@@ -157,60 +157,16 @@ function interfaceHomeOptionsUpdate()
 	
 }
 
-function interfaceHomeSetupWebsitesShow(oResponse)
+function interfaceHomeFinancialsShow(oResponse)
 {
+	var aHTML = [];
+	var h = -1;
 
-	if (oResponse == undefined)
-	{
-		$.ajax(
-		{
-			type: 'GET',
-			url: '/ondemand/setup/?method=SETUP_SITE_SEARCH',
-			dataType: 'json',
-			success: interfaceHomeSetupWebsitesShow
-		});
-		
-	}
-	else
-	{
-		var aHTML = [];
-		var h = -1;
+	aHTML[++h] = '<table id="tableInterfaceWebsiteHomeMostLikely">';
 	
-		if (oResponse.data.rows.length == 0)
-		{
-			aHTML[++h] = '<table id="tableInterfaceWebsiteHomeMostLikely">';
-			aHTML[++h] = '<tr class="trInterfaceWebsiteHomeMostLikelyNothing">';
-			aHTML[++h] = '<td class="tdInterfaceWebsiteHomeMostLikelyNothing">Click New to create a website/webapp</td>';
-			aHTML[++h] = '</tr>';
-			aHTML[++h] = '</table>';
-		}
-		else
-		{
-		
-			aHTML[++h] = '<table id="tableInterfaceWebsiteHomeMostLikely">';
-			
-			$.each(oResponse.data.rows, function()
-			{	
-				aHTML[++h] = '<tr class="interfaceMainRow">';
-				
-				aHTML[++h] = '<td id="interfaceWebsiteHomeMostLikely_Title-' + this.id + 
-										'" class="interfaceHomeMostLikely">' +
-										this.title +
-										'</td>';
-				
-				aHTML[++h] = '</tr>'
-			});
-			
-			aHTML[++h] = '</tbody></table>';
-		}
-		
-		$('#tdInterfaceMainHomeColumn1').html(aHTML.join(''));
-	
-		$('td.interfaceHomeMostLikely').click(function(event)
-		{
-			interfaceSetupWebsiteSearch(event.target.id, {source: 1});
-		});
-	}
+	aHTML[++h] = '</tbody></table>';
+
+	$('#tdInterfaceMainHomeColumn1').html(aHTML.join(''))
 }
 
 function interfaceHomeLogonShow()
@@ -230,8 +186,7 @@ function interfaceHomeLogonShow()
 	aHTML[++h] = '<table id="tableInterfaceMainHomeNotes" class="interfaceMainHome">' +
 						'<tr id="trInterfaceMainHomeNotes" class="interfaceMainHome">' +						
 						'<td id="tdInterfaceMainHomeNotes" class="interfaceMainHome" style="color:#404040;">' +
-						'<br /><br /><hr />' +
-						'<br />This is a simple app for accountants to manage their clients.' +
+						'An app for accountants to manage their clients.' +
 						'</td>' +
 						'</tr>' +
 					'</table>';
