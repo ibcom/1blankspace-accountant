@@ -86,7 +86,7 @@ function interfaceControlSetMasterViewport()
 	}	
 	else
 	{
-		interfaceSetupFinancialMasterViewport({showHome: false});
+		interfaceFinancialMasterViewport({showHome: false});
 	}	
 }
 
@@ -155,7 +155,21 @@ function interfaceControlOptions()
 					'Payments</span>' +
 					'</td>' +
 					'</tr>';	
-					
+		
+		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlFinancialPayroll" class="interfaceViewportMasterControl">' +
+					'<td id="tdInterfaceViewportMasterControlFinancialPayroll" class="interfaceViewportMasterControl">' +
+					'<span id="spanInterfaceViewportMasterControlFinancialPayroll" class="interfaceViewportMasterControl">' +
+					'Payroll</span>' +
+					'</td>' +
+					'</tr>';
+							
+		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlFinancialTax" class="interfaceViewportMasterControl">' +
+					'<td id="tdInterfaceViewportMasterControlFinancialTax" class="interfaceViewportMasterControl">' +
+					'<span id="spanInterfaceViewportMasterControlFinancialTax" class="interfaceViewportMasterControl">' +
+					'Tax</span>' +
+					'</td>' +
+					'</tr>';
+									
 		aHTML[++h] = '</table>'
 		aHTML[++h] = '</td>';			
 	
@@ -176,13 +190,6 @@ function interfaceControlOptions()
 						'<td id="tdInterfaceViewportMasterControlReport" class="interfaceViewportMasterControl">' +
 						'<span id="spanInterfaceViewportMasterControlReport" class="interfaceViewportMasterControl">' +
 						'Reporting</span>' +
-						'</td>' +
-						'</tr>';
-						
-		aHTML[++h] = '<tr id="trInterfaceViewportMasterControlSpaces" class="interfaceViewportMasterControl">' +
-						'<td id="tdInterfaceViewportMasterControlSpaces" class="interfaceViewportMasterControl">' +
-						'<span id="spanInterfaceViewportMasterControlSpaces" class="interfaceViewportMasterControl">' +
-						'Clients</span>' +
 						'</td>' +
 						'</tr>';
 						
@@ -245,6 +252,18 @@ function interfaceControlOptionsBind()
 	{
 		interfaceMasterOptionsSource();
 		interfaceReportMasterViewport();
+	});
+	
+	$('#tdInterfaceViewportMasterControlFinancialTax').click(function(event)
+	{
+		interfaceMasterOptionsSource();
+		interfaceFinancialTaxMasterViewport();
+	});
+	
+	$('#tdInterfaceViewportMasterControlFinancialPayroll').click(function(event)
+	{
+		interfaceMasterOptionsSource();
+		interfaceFinancialPayrollMasterViewport();
 	});
 }
 function interfaceControlSetupOptions()

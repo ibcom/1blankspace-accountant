@@ -1,4 +1,4 @@
-var gsHomeDefaultElementId = 'tdInterfaceViewportControlSetupWebsites';
+var gsHomeDefaultElementId = 'tdInterfaceViewportControlClients';
 
 $(function()
 {
@@ -48,7 +48,7 @@ function interfaceHomeViewport()
 						'</tr>';
 		
 	aHTML[++h] = '<tr id="trInterfaceViewportControl1" class="interfaceViewportControl">' +
-					'<td id="tdInterfaceViewportControlFinancials" class="interfaceViewportControl interfaceViewportControlHome">Financials</td>' +
+					'<td id="tdInterfaceViewportControlClients" class="interfaceViewportControl interfaceViewportControlHome">Clients</td>' +
 					'</tr>';
 	
 	aHTML[++h] = '</table>';					
@@ -61,13 +61,13 @@ function interfaceHomeViewport()
 function interfaceMasterHomeViewportBind()
 {
 	
-	$('#tdInterfaceViewportControlFinancials').click(function(event)
+	$('#tdInterfaceViewportControlClients').click(function(event)
 	{
 		$('#tdInterfaceMainHomeColumn1').html(gsLoadingXHTML);
 		gsHomeDefaultElementId = this.id;
-		interfaceHomeFinancialsShow()
+		interfaceHomeClientsShow()
+		
 	});
-	
 }	
 
 function interfaceHome()
@@ -121,19 +121,11 @@ function interfaceHomeOptions()
 		
 	if (gbRoleBase)
 	{
-	
 		aHTML[++h] = '<tr id="trinterfaceHomeOptions" class="interfaceHomeOptions">' +
 					'<td id="tdinterfaceHomeOptionsMyStartPage" class="interfaceHomeOptions">' +
 					'<a href="/index.asp?Site=475&p=asms%2Fmystartpage.asp" target="_blank">My Start Page (Classic)</a>' +
 					'</td>' +
 					'</tr>';
-					
-		//aHTML[++h] = '<tr id="trinterfaceHomeOptions" class="interfaceHomeOptions">' +
-		//			'<td id="tdinterfaceHomeOptionsCalendar" class="interfaceHomeOptions">' +
-		//			'Switch<span id="spaninterfaceHomeOptionsCalendar"><span>' +
-		//			'</td>' +
-		//			'</tr>';
-				
 	}
 	
 	aHTML[++h] = '</table>'
@@ -157,12 +149,59 @@ function interfaceHomeOptionsUpdate()
 	
 }
 
-function interfaceHomeFinancialsShow(oResponse)
+function interfaceHomeClientsShow(oResponse)
 {
 	var aHTML = [];
 	var h = -1;
 
 	aHTML[++h] = '<table id="tableInterfaceWebsiteHomeMostLikely">';
+	
+		aHTML[++h] = '<tr class="interfaceMainRow">';
+						
+		aHTML[++h] = '<td id="tdSummaryHome_closed-" class="interfaceMainRow interfaceMainRowSelect">' +
+								'ABC Pty Ltd</td>';
+																	
+		aHTML[++h] = '</tr>';
+		
+		aHTML[++h] = '<tr class="interfaceMainRow">';
+						
+		aHTML[++h] = '<td id="tdSummaryHome_closed-" class="interfaceMainRow interfaceMainRowSelect">' +
+								'DEF Pty Ltd</td>';
+																	
+		aHTML[++h] = '</tr>';
+	
+	aHTML[++h] = '</tbody></table>';
+
+	$('#tdInterfaceMainHomeColumn1').html(aHTML.join(''))
+}
+
+
+function interfaceHomeSummaryShow(oResponse)
+{
+	var aHTML = [];
+	var h = -1;
+
+	aHTML[++h] = '<table id="tableInterfaceWebsiteHomeMostLikely">';
+	
+		aHTML[++h] = '<tr class="interfaceMainRow">';
+						
+		aHTML[++h] = '<td id="tdSummaryHome_closed-" class="interfaceMainRow" style="width:200px;">' +
+								'Accounts are closed as at</td>';
+		
+		aHTML[++h] = '<td id="tdSummaryHome_closed_value-" class="interfaceMainRow" style="text-align:right;">' +
+									 '30 June 2012</td>';
+																	
+		aHTML[++h] = '</tr>';
+		
+		aHTML[++h] = '<tr class="interfaceMainRow">';
+						
+		aHTML[++h] = '<td id="tdSummaryHome_closed-" class="interfaceMainRow" style="width:200px;">' +
+								'Tax last reported</td>';
+		
+		aHTML[++h] = '<td id="tdSummaryHome_closed_value-" class="interfaceMainRow" style="text-align:right;">' +
+									 '30 June 2012</td>';
+																	
+		aHTML[++h] = '</tr>';
 	
 	aHTML[++h] = '</tbody></table>';
 
